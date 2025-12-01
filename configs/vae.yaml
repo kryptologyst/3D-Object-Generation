@@ -1,0 +1,43 @@
+# VAE configuration
+model:
+  type: "vae"
+  z_dim: 128
+  num_points: 1024
+  hidden_dim: 512
+  learning_rate: 1e-4
+  weight_decay: 1e-5
+  beta: 1.0
+
+data:
+  batch_size: 32
+  num_workers: 4
+  num_points: 1024
+  synthetic: true
+  shape_types: ["sphere", "cube", "cylinder"]
+  normalize: true
+  augment: true
+
+training:
+  max_epochs: 100
+  patience: 10
+  gradient_clip_val: 1.0
+  accumulate_grad_batches: 1
+  precision: 32
+  accelerator: "auto"
+  devices: 1
+
+paths:
+  data_dir: "data"
+  checkpoint_dir: "checkpoints"
+  log_dir: "logs"
+  output_dir: "outputs"
+
+experiment:
+  name: "3d_vae"
+  seed: 42
+  debug: false
+
+logging:
+  level: "INFO"
+  use_wandb: false
+  wandb_project: "3d-object-generation"
